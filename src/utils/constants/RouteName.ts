@@ -1,0 +1,4 @@
+
+enum RouteName {
+    CHAT = 'CHAT'
+}

@@ -4,10 +4,11 @@
     "slug": "AsanyApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "scheme": "asany://",
+    "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,12 +23,25 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "relatedApplications": [
+        {
+          "platform": "itunes",
+          "url": "app store url",
+          "id": "iOS bundle identifier"
+        },
+        {
+          "platform": "play",
+          "url": "play store url",
+          "id": "android package"
+        }
+      ],
+      "preferRelatedApplications": true
     }
   }
 }
