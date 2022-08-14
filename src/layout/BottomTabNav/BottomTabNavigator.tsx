@@ -2,7 +2,7 @@
  * Learn more about createBottomTabNavigator:
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, useWindowDimensions } from 'react-native';
 
 import { BottomTabHeaderProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator, StackHeaderProps } from '@react-navigation/stack';
@@ -19,59 +19,72 @@ import { useTheme } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BottomTabHeader } from '../Header';
 import { Chat } from './tabs';
+import { Sidebar, SidebarContainer } from '../Sidebar';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
+  const menu = <Sidebar />;
+  const { width } = useWindowDimensions();
   return (
-    <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBar={(props) => <BottomBar {...props} />}
-      // tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
-    >
-      <BottomTab.Screen
-        name="chat"
-        component={Chat}
-        options={{
-          title: '消息',
-          header: (props) => <BottomTabHeader {...props} />,
-          tabBarLabel: '消息',
-          tabBarIcon: (props) => <Icon.LineAwesomeIcon name="angle-double-up" {...props} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="task"
-        component={TabOneNavigator}
-        options={{
-          tabBarLabel: '协作',
-          tabBarIcon: (props) => <Icon.LineAwesomeIcon name="suitcase" {...props} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="workbench"
-        component={TabTwoNavigator}
-        options={{
-          tabBarLabel: '工作台',
-          tabBarIcon: (props) => <Icon.LineAwesomeIcon name="tachometer" {...props} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="contacts"
-        component={TabTwo2Navigator}
-        options={{
-          tabBarLabel: '通讯录',
-          tabBarIcon: (props) => <Icon.LineAwesomeIcon name="list-alt" {...props} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="me"
-        component={TabTwo2Navigator}
-        options={{
-          tabBarLabel: '我的',
-          tabBarIcon: (props) => <Icon.LineAwesomeIcon name="user" {...props} />,
-        }}
-      />
-    </BottomTab.Navigator>
+    <SidebarContainer
+      // ref={this.side}
+      disableGestures={() => {
+        // const { routes } = navigation.state;
+        // return routes.length > 1;
+        return false;
+      }}
+      openMenuOffset={width * 0.88}
+      menu={menu}>
+      <BottomTab.Navigator
+        initialRouteName="TabOne"
+        tabBar={(props) => <BottomBar {...props} />}
+        // tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+      >
+        <BottomTab.Screen
+          name="chat"
+          component={Chat}
+          options={{
+            title: '消息',
+            header: (props) => <BottomTabHeader {...props} />,
+            tabBarLabel: '消息',
+            tabBarIcon: (props) => <Icon.LineAwesomeIcon name="angle-double-up" {...props} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="task"
+          component={TabOneNavigator}
+          options={{
+            tabBarLabel: '协作',
+            tabBarIcon: (props) => <Icon.LineAwesomeIcon name="suitcase" {...props} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="workbench"
+          component={TabTwoNavigator}
+          options={{
+            tabBarLabel: '工作台',
+            tabBarIcon: (props) => <Icon.LineAwesomeIcon name="tachometer" {...props} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="contacts"
+          component={TabTwo2Navigator}
+          options={{
+            tabBarLabel: '通讯录',
+            tabBarIcon: (props) => <Icon.LineAwesomeIcon name="list-alt" {...props} />,
+          }}
+        />
+        <BottomTab.Screen
+          name="me"
+          component={TabTwo2Navigator}
+          options={{
+            tabBarLabel: '我的',
+            tabBarIcon: (props) => <Icon.LineAwesomeIcon name="user" {...props} />,
+          }}
+        />
+      </BottomTab.Navigator>
+    </SidebarContainer>
   );
 }
 

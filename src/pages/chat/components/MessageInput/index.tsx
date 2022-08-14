@@ -73,7 +73,6 @@ const useStyles = makeStyles((theme: { colors: Colors }, { bottom }: { bottom: n
     height: 40,
     flex: 1,
     paddingLeft: 4,
-    // backgroundColor: theme.colors.success
   },
   inputInnerContainer: {
     paddingLeft: 14,
@@ -102,7 +101,6 @@ const useStyles = makeStyles((theme: { colors: Colors }, { bottom }: { bottom: n
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: theme.colors.error
   },
 }));
 

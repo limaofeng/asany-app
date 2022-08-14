@@ -5,12 +5,20 @@
 
 export type RootStackParamList = {
   Root: undefined;
+  SignIn: undefined;
+  SignUp: undefined;
   Conversation: undefined;
   NotFound: undefined;
+  PhoneVerification: {
+    phoneNumber: string;
+  };
+  SetPassword: undefined;
+  ForgotPassword: undefined,
+  CompletePersonalInformation: undefined;
 };
 
 export type BottomTabParamList = {
-  [key:string]:undefined;
+  [key: string]: undefined;
 };
 
 export type TabOneParamList = {

@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from '@rneui/themed';
 import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/layout/Navigation';
-import { SidebarContainer, Sidebar } from './src/components/Sidebar';
+import { SidebarContainer, Sidebar } from './src/layout/Sidebar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { useWindowDimensions } from 'react-native';
@@ -24,17 +24,14 @@ const theme = createTheme({
     warning: '#FFAB2B',
     success: '#6DD230',
     error: '#FE4D97',
-    info: '#2CE5F6'
+    info: '#2CE5F6',
   } as any,
-  darkColors: {
-  },
+  darkColors: {},
 });
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
-
-  const { width } = useWindowDimensions();
 
   const [loaded] = useFonts({
     LineAwesome: require('./assets/fonts/LineAwesome.ttf'),
@@ -47,24 +44,10 @@ export default function App() {
   if (!isLoadingComplete) {
     return null;
   } else {
-    const menu = <Sidebar /*openMenu={this.toggleSidebar}*/ />;
-
     return (
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
-          <SidebarContainer
-            // ref={this.side}
-            disableGestures={() => {
-              // const { routes } = navigation.state;
-              // return routes.length > 1;
-              return false;
-            }}
-            openMenuOffset={width * 0.88}
-            menu={menu}>
-            <Navigation colorScheme={colorScheme} />
-          </SidebarContainer>
-          {/*         <Navigation colorScheme={colorScheme} />
-        <StatusBar /> */}
+          <Navigation colorScheme={colorScheme} />
         </ThemeProvider>
       </SafeAreaProvider>
     );

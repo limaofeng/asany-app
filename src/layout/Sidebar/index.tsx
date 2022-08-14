@@ -1,4 +1,3 @@
-import { Icon, Item, Label, List, Note } from './../components';
 import React, {useState, useRef , useReducer} from 'react';
 import { 
   PanResponder,
@@ -422,7 +421,7 @@ const paddingTop = Math.max(30, 0);
           // onPress={this.handleJumpSettings}
           style={{ width: 70, height: 70, alignItems: 'center', justifyContent: 'center' }}
         >
-          <Icon type="MaterialIcons" name="settings" color={colors.minor} size={28} />
+          {/* <Icon type="MaterialIcons" name="settings" color={colors.minor} size={28} /> */}
         </TouchableOpacity>
       </View>
       <View style={{ height:0}} />
